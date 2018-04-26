@@ -3,7 +3,7 @@ public class MengenKlasse {
 	protected byte[] GrundArray;
 	
 	public MengenKlasse(int groesse){
-		this.GrundArray = new byte[groesse];
+		this.GrundArray = new byte[groesse+1];
 	}
 	
 	public int add(int toBeInserted) {
@@ -36,9 +36,9 @@ public class MengenKlasse {
 	
 	public static void main(String[] args) throws IOException {
 		
-		System.out.println("Bitte geben Sie die gewünschte Länge des Mengenarrays ein:");
+		System.out.println("Array mit Länge 10 wird erzeugt, die ersten drei Felder werden ersetzt.");
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		MengenKlasse testObjekt = new MengenKlasse(Integer.parseInt(in.readLine())+1);
+		MengenUnterklasse testObjekt = new MengenUnterklasse(10, 2);
 		int n = 1;
 		do{
 			System.out.println();
@@ -46,6 +46,8 @@ public class MengenKlasse {
 			System.out.println("(1) Element hinzufügen");
 			System.out.println("(2) Mengengröße ausgeben");
 			System.out.println("(3) Elemente ausgeben");
+			System.out.println("(4) Prüfen ob Inhalt leer ist");
+			System.out.println("(5) Array mit Elementen füllen");
 			System.out.println("(0) Programm beenden");
 			System.out.println();
 			n = Integer.parseInt(in.readLine());
@@ -65,6 +67,25 @@ public class MengenKlasse {
 				case 3:
 					testObjekt.print();
 					break;
+				case 4:
+					if(testObjekt.isEmpty()) {
+						System.out.println("Das Objekt ist leer.");
+					}
+					else {
+						System.out.println("Das Objekt ist nicht leer.");
+					}
+					break;
+				case 5:
+					System.out.println("Bitte geben sie den Wert 'unten' an:");
+					int unten = Integer.parseInt(in.readLine());
+					System.out.println("Bitte geben sie den Wert 'oben' an:");
+					int oben = Integer.parseInt(in.readLine());
+					if(testObjekt.add(unten, oben)==-1){
+						System.out.println("Die Werte konnten nicht hinzugefügt werden.");
+					}
+					else {
+						System.out.println("Die Werte wurden hinzugefügt.");
+					}
 			}
 		}while(n!=0);
 		System.out.println("Programm wird beendet.");
