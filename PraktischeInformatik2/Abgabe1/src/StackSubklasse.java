@@ -24,4 +24,12 @@ public class StackSubklasse extends StackHauptklasse{
 		}
 		
 	}
+	
+	public int pop(int n){
+		if(this.top-n>0) {
+			this.top = this.top - n;
+			return this.stackArray[this.top+1];
+		}
+		return -1;
+	}
 }
