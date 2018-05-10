@@ -20,7 +20,6 @@ public class Polynomberechnung {
 		}
 		
 		System.out.println("Geben Sie die Stützstellen ein.");
-		int stuetzstellen = Integer.parseInt(in.readLine());
 		
 		final float iende = x_rechts*x_links+x_links;
 		

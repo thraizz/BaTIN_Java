@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class AB3_A2 {
+public class AB1_A2 {
 	
 	public static void main(String[] Args) throws IOException{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

@@ -11,7 +11,6 @@ public class HandyPrepaidKontoTest {
     
   BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
   int choice = 0;
-  boolean erfolg;
   
   do {
   
