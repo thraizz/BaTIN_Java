@@ -19,12 +19,11 @@ public class MengenUnterklasse extends MengenKlasse {
 		return returnValue;
 	}
 	
-	public int add(int unten, int oben) {
-		if(unten<0||unten>this.GrundArray.length||oben<0||oben>this.GrundArray.length) {
-			return -1;
-		}
-		for(int i=unten;i<=oben;i++) {
-			this.GrundArray[i]=1;
+	public int add(int[] array) {
+		for(int i = 0; i<array.length; i++) {
+			if(this.add(array[i])==-1){
+				return -1;
+			}
 		}
 		return 0;
 		

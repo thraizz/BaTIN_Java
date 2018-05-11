@@ -36,29 +36,29 @@ public class MengenKlasse {
 	
 	public static void main(String[] args) throws IOException {
 		
-		System.out.println("Array mit Länge 10 wird erzeugt, die ersten drei Felder werden ersetzt.");
+		System.out.println("Array mit Laenge 10 wird erzeugt, die ersten drei Felder werden ersetzt.");
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		MengenUnterklasse testObjekt = new MengenUnterklasse(10, 2);
 		int n = 1;
 		do{
 			System.out.println();
-			System.out.println("Wählen Sie eine der Möglichkeiten:");
-			System.out.println("(1) Element hinzufügen");
-			System.out.println("(2) Mengengröße ausgeben");
+			System.out.println("Waehlen Sie eine der Moeglichkeiten:");
+			System.out.println("(1) Element hinzufuegen");
+			System.out.println("(2) Mengengroesse ausgeben");
 			System.out.println("(3) Elemente ausgeben");
-			System.out.println("(4) Prüfen ob Inhalt leer ist");
-			System.out.println("(5) Array mit Elementen füllen");
+			System.out.println("(4) Pruefen ob Inhalt leer ist");
+			System.out.println("(5) Array mit Elementen fuellen");
 			System.out.println("(0) Programm beenden");
 			System.out.println();
 			n = Integer.parseInt(in.readLine());
 			switch (n) {
 				case 1:
-					System.out.println("Bitte geben Sie das hinzuzufügende Element ein:");
+					System.out.println("Bitte geben Sie das hinzuzufuegende Element ein:");
 					if(testObjekt.add(Integer.parseInt(in.readLine()))==-1) {
-						System.out.println("Das Element konnte nicht hinzugefügt werden (returned -1).");
+						System.out.println("Das Element konnte nicht hinzugefuegt werden (returned -1).");
 					}
 					else {
-						System.out.println("Das Element wurde hinzugefügt (returned 0).");
+						System.out.println("Das Element wurde hinzugefuegt (returned 0).");
 					}
 					break;
 				case 2:
@@ -76,15 +76,13 @@ public class MengenKlasse {
 					}
 					break;
 				case 5:
-					System.out.println("Bitte geben sie den Wert 'unten' an:");
-					int unten = Integer.parseInt(in.readLine());
-					System.out.println("Bitte geben sie den Wert 'oben' an:");
-					int oben = Integer.parseInt(in.readLine());
-					if(testObjekt.add(unten, oben)==-1){
-						System.out.println("Die Werte konnten nicht hinzugefügt werden.");
+					System.out.println("Test-Array: {5,6,7}");
+					int[] addArray = {5,6,7};
+					if(testObjekt.add(addArray)==-1){
+						System.out.println("Die Werte konnten nicht hinzugefuegt werden.");
 					}
 					else {
-						System.out.println("Die Werte wurden hinzugefügt.");
+						System.out.println("Die Werte wurden hinzugefuegt.");
 					}
 			}
 		}while(n!=0);
