@@ -41,10 +41,18 @@ public class ArrayGList <T> implements GList{
 	}
 
 	public boolean search(Object value) {
+		for(int i=0;i<this.listLength;i++) {
+			if(this.Array[i]==value) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	public void print() {
-	}
+		for(int i=0;i<this.listLength;i++) {
+			System.out.println(this.Array[i]);
+			}
+		}
 
 }
