@@ -27,6 +27,15 @@ public class MengenUnterklasse extends MengenKlasse {
 			this.GrundArray[i]=1;
 		}
 		return 0;
+	}
+		
+	public int add(int[] array) {
+		for(int i = 0; i<array.length; i++) {
+			if(this.add(array[i])==-1){
+				return -1;
+			}
+		}
+		return 0;
 		
 	}
 

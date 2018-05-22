@@ -50,6 +50,5 @@ public abstract class MengenKlasse {
 			System.out.println("Fehler: Nullzeiger-Zugriff");
 		}
 		System.out.println("Programm laeuft weiter.");
-		
 	}
 }
