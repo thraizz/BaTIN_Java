@@ -1,0 +1,16 @@
+5
+Asterix
+1.5
+37
+Obelix
+1.9
+36
+Miraculix
+1.65
+70
+Methusalix
+1.45
+125
+Troubadix
+1.75
+34
