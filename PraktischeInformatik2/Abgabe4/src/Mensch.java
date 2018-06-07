@@ -16,6 +16,7 @@ public class Mensch implements Serializable {
 		System.out.println("Name: "+this.name);
 		System.out.println("Groesse: "+this.groesse);
 		System.out.println("Alter: "+this.alter);
+		System.out.println();
 	}
 	
 }
