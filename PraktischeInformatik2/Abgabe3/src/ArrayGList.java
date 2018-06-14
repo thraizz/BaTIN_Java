@@ -1,11 +1,11 @@
 
-public class ArrayGList <T> implements GList <T>{
+public class ArrayGList <T> implements GList{
 	
-	private T[] Array;
+	private Object[] Array;
 	private int listLength;
 	
 	public ArrayGList(int maxLength) {
-		this.Array = (T[]) new Object [maxLength];
+		this.Array = new Object [maxLength];
 		this.listLength = 0;
 	}
 
@@ -15,7 +15,7 @@ public class ArrayGList <T> implements GList <T>{
 		return this.listLength;
 	}
 
-	public int insertLast(T value) {
+	public Object insertLast(int value) {
 		if(this.Array.length==this.listLength) {
 			return -1;
 		}
@@ -27,45 +27,32 @@ public class ArrayGList <T> implements GList <T>{
 		if(this.listLength==0) {
 			return -9999;
 		}
-		return (T) this.Array[0];
+		return this.Array[0];
 	}
-	
-	public int deleteFirst() {
-		if(this.listLength-1>=0) {
+
+	public Object deleteFirst() {
+		if(this.listLength-1>0)
 		for(int i=1;i<this.listLength;i++) {
 			this.Array[i-1]=this.Array[i];
 		}
+		
 		this.listLength--;
 		return 0;
-		}
-		return -1;
 	}
 
-	public boolean search(T value) {
+	public boolean search(Object value) {
 		for(int i=0;i<this.listLength;i++) {
-			if(this.Array[i]==value) {return false;}
+			if(this.Array[i]==value) {
+				return true;
+			}
 		}
-		return true;
+		return false;
 	}
 
 	public void print() {
-		if(this.listLength==0) {
-			System.out.println("Leer!");
-		}
 		for(int i=0;i<this.listLength;i++) {
 			System.out.println(this.Array[i]);
 			}
 		}
-	
-	public int append(T[] GArray) {
-		for(int i=0;i<GArray.length;i++) {
-			if(this.insertLast(GArray[i])==-1) { 
-				System.out.println("Maximale Groesse erreicht!");
-				return -1; 
-				}
-		}
-		return 0;
-		
-	}
 
 }
