@@ -35,22 +35,33 @@ public class Datenverwaltung {
 
     }
 
-    public int safeExit() {
+    public int safeExit() throws  IOException{
+        FileWriter out;
+        BufferedWriter bufout;
+
         try {
-            FileOutputStream out = new FileOutputStream("artikel.idx");
-            ObjectOutputStream objout = new ObjectOutputStream(out);
+            out = new FileWriter("artikel.idx");
+            bufout = new BufferedWriter(out);
             for(Index i : this.indexListe) {
-                objout.writeObject(i);
+                bufout.append(i.getLine());
             }
-            out.close();
-            objout.close();
         }
         catch (IOException e){
+            System.out.println(e);
             return -1;
         }
-        finally {
-            return 0;
+        try {
+            out = new FileWriter("artikel.dat");
+            bufout = new BufferedWriter(out);
+            bufout.write(this.artikel);
         }
+        catch (IOException e){
+            System.out.println(e);
+            return -1;
+        }
+        bufout.close();
+        out.close();
+        return 0;
     }
 
     public ArrayList<String> getAllArtikel(){

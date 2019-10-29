@@ -8,5 +8,8 @@ public class Index implements Serializable {
         this.artnr = artnr;
         this.offset = offset;
     }
+    public String getLine(){
+        return ""+this.artnr+","+this.offset;
+    }
 }
 
