@@ -51,7 +51,7 @@ public class Main {
                     for(String s : d.getAllIndex()){
                         System.out.println(s);
                     }
-                    System.out.println(" Wählen Sie eine Artikelnummer:");
+                    System.out.println("Wählen Sie eine Artikelnummer:");
                     String result = d.getArtikel(Integer.parseInt(in.readLine()));
                     System.out.println(result);
                     break;

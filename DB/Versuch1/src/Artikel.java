@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Artikel implements Serializable {
+public class Artikel {
     private int artnr;
     private String artbez;
     private String mge;
@@ -21,10 +21,7 @@ public class Artikel implements Serializable {
         return this.artnr;
     }
 
-    public int getArticleLength(){ return this.s.length(); }
-
     public String getDatensatz(){
         return this.s;
     }
-
 }

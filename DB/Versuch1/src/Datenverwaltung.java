@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Datenverwaltung {
     private ArrayList<Artikel> artListe = new ArrayList<Artikel>();
@@ -34,6 +35,7 @@ public class Datenverwaltung {
         Index i = new Index(art.getArtnr(), (int)this.artikelFile.length());
         this.indexListe.add(i);
         this.a += art.getDatensatz();
+        Collections.sort(this.indexListe);
     }
 
     public void saveExit() throws IOException{
@@ -56,7 +58,6 @@ public class Datenverwaltung {
     }
 
     public ArrayList<String> getAllArtikel(){
-        //TODO Fix second newline
         ArrayList<String> s = new ArrayList<String>();
         for(Artikel a : artListe) {
             s.add(a.getDatensatz());
@@ -64,12 +65,16 @@ public class Datenverwaltung {
         return s;
     }
 
-    public String getArtikel(int artNr){
-        //TODO
-        for(Artikel a : this.artListe) {
-            if(a.getArtnr()==artNr){
-                return a.getDatensatz();
+    public String getArtikel(int artNr) throws IOException {
+        int offset = -1;
+        for(Index i : this.indexListe) {
+            if(i.getArtnr()==artNr){
+                offset = i.getOffset();
             }
+        }
+        if(offset != -1){
+            this.artikelFile.seek(offset);
+            return this.artikelFile.readLine();
         }
         return "Error! Artikel nicht gefunden";
 
