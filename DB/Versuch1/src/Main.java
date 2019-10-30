@@ -48,22 +48,18 @@ public class Main {
 
                 case 3:
                     // Artikel anhand von Artikelnummer finden
-                    System.out.println("Artikelnummer:");
+                    for(String s : d.getAllIndex()){
+                        System.out.println(s);
+                    }
+                    System.out.println(" Wählen Sie eine Artikelnummer:");
                     String result = d.getArtikel(Integer.parseInt(in.readLine()));
                     System.out.println(result);
                     break;
 
                 case 4:
                     // Speichern
-                    if(d.safeExit()==0){
-                        System.out.println("Erfolgreich gespeichert.");
-                        exit(0);
-                    }
-                    else{
-                        System.out.println("Konnte nicht speichern, Vorgang abgebrochen.");
-                        exit(-1);
-                    }
-
+                    d.saveExit();
+                    exit(0);
                     break;
             }
         } while (choice != 0);

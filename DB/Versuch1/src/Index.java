@@ -1,6 +1,4 @@
-import java.io.Serializable;
-
-public class Index implements Serializable {
+public class Index {
     private int artnr;
     private int offset;
 
@@ -9,7 +7,7 @@ public class Index implements Serializable {
         this.offset = offset;
     }
     public String getLine(){
-        return ""+this.artnr+","+this.offset;
+        return this.artnr+","+this.offset;
     }
 }
 

@@ -1,70 +1,62 @@
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.io.*;
 import java.util.ArrayList;
 
 public class Datenverwaltung {
     private ArrayList<Artikel> artListe = new ArrayList<Artikel>();
     private ArrayList<Index> indexListe = new ArrayList<Index>();
-    private String artikel;
+    private String a;
+    private RandomAccessFile index;
+    private RandomAccessFile artikelFile;
 
 
     public Datenverwaltung() throws IOException {
         // Initialize indexListe with Index Objects from artikel.idx
-        FileReader indexFileReader = new FileReader("artikel.idx");
-        BufferedReader indexBuffer = new BufferedReader(indexFileReader);
-        while(indexBuffer.readLine() != null){
-            Index i = new Index(Integer.parseInt(indexBuffer.readLine()), Integer.parseInt(indexBuffer.readLine()));
+        this.index = new RandomAccessFile("artikel.idx", "rw");
+        String s;
+        String[] sArray;
+        while((s = this.index.readLine()) != null){
+            sArray = s.split(",");
+            Index i = new Index(Integer.parseInt(sArray[0]), Integer.parseInt(sArray[1]));
             this.indexListe.add(i);
         }
-        indexFileReader.close();
-        indexBuffer.close();
 
         // Read Artikel Objects from
-        FileReader artikeldatFileReader = new FileReader("artikel.dat");
-        BufferedReader artikeldatBuffer = new BufferedReader(artikeldatFileReader);
-        this.artikel = artikeldatBuffer.readLine();
+        artikelFile = new RandomAccessFile("artikel.dat", "rw");
+        while((s = this.artikelFile.readLine()) != null){
+            sArray = s.split(";");
+            Artikel art = new Artikel(Integer.parseInt(sArray[0]), sArray[1], sArray[2], Float.parseFloat(sArray[3]), Float.parseFloat(sArray[4]));
+            this.artListe.add(art);
+        }
     }
 
-    public void addArtikel(Artikel art){
+    public void addArtikel(Artikel art) throws IOException {
         this.artListe.add(art);
-        Index i = new Index(art.getArtnr(), art.getOffset());
+        Index i = new Index(art.getArtnr(), (int)this.artikelFile.length());
         this.indexListe.add(i);
-        this.artikel += art.getDatensatz();
-        //TODO: Artikel aus String filtern und Objekte erzeugen
-
+        this.a += art.getDatensatz();
     }
 
-    public int safeExit() throws  IOException{
-        FileWriter out;
-        BufferedWriter bufout;
+    public void saveExit() throws IOException{
+        this.index.setLength(0);
+        for(Index i : this.indexListe) {
+            this.index.writeBytes(i.getLine());
+        }
+        this.artikelFile.setLength(0);
+        for(Artikel a : this.artListe){
+            this.artikelFile.writeBytes(a.getDatensatz());
+        }
 
-        try {
-            out = new FileWriter("artikel.idx");
-            bufout = new BufferedWriter(out);
-            for(Index i : this.indexListe) {
-                bufout.append(i.getLine());
-            }
+    }
+    public ArrayList<String> getAllIndex(){
+        ArrayList<String> s = new ArrayList<String>();
+        for(Index i : indexListe) {
+            s.add(i.getLine());
         }
-        catch (IOException e){
-            System.out.println(e);
-            return -1;
-        }
-        try {
-            out = new FileWriter("artikel.dat");
-            bufout = new BufferedWriter(out);
-            bufout.write(this.artikel);
-        }
-        catch (IOException e){
-            System.out.println(e);
-            return -1;
-        }
-        bufout.close();
-        out.close();
-        return 0;
+        return s;
     }
 
     public ArrayList<String> getAllArtikel(){
+        //TODO Fix second newline
         ArrayList<String> s = new ArrayList<String>();
         for(Artikel a : artListe) {
             s.add(a.getDatensatz());
@@ -73,6 +65,7 @@ public class Datenverwaltung {
     }
 
     public String getArtikel(int artNr){
+        //TODO
         for(Artikel a : this.artListe) {
             if(a.getArtnr()==artNr){
                 return a.getDatensatz();
