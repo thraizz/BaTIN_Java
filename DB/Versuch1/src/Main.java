@@ -42,23 +42,29 @@ public class Main {
                 case 2:
                     // Alle Artikel anzeigen
                     for(String s : d.getAllArtikel()){
-                        System.out.println(s);
+                        System.out.print(s);
                     }
                     break;
 
                 case 3:
                     // Artikel anhand von Artikelnummer finden
+                    System.out.println("Aktuelle Indexliste:");
                     for(String s : d.getAllIndex()){
-                        System.out.println(s);
+                        System.out.print(s);
                     }
-                    System.out.println("Wählen Sie eine Artikelnummer:");
-                    String result = d.getArtikel(Integer.parseInt(in.readLine()));
+                    System.out.println();
+                    int i;
+                    do {
+                        System.out.println("Wählen Sie eine Artikelnummer:");
+                        i = Integer.parseInt(in.readLine());
+                    } while (i<0);
+                    String result = d.getArtikel(i);
                     System.out.println(result);
                     break;
 
                 case 4:
                     // Speichern
-                    d.saveExit();
+                    d.save();
                     exit(0);
                     break;
             }

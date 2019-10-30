@@ -36,18 +36,17 @@ public class Datenverwaltung {
         this.indexListe.add(i);
         this.a += art.getDatensatz();
         Collections.sort(this.indexListe);
-    }
-
-    public void saveExit() throws IOException{
-        this.index.setLength(0);
-        for(Index i : this.indexListe) {
-            this.index.writeBytes(i.getLine());
-        }
         this.artikelFile.setLength(0);
         for(Artikel a : this.artListe){
             this.artikelFile.writeBytes(a.getDatensatz());
         }
+    }
 
+    public void save() throws IOException{
+        this.index.setLength(0);
+        for(Index i : this.indexListe) {
+            this.index.writeBytes(i.getLine());
+        }
     }
     public ArrayList<String> getAllIndex(){
         ArrayList<String> s = new ArrayList<String>();
