@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a5b6f75-914d-4fdc-b403-1f61d1f0a5ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artikel.dat" beforeDir="false" afterPath="$PROJECT_DIR$/artikel.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artikel.idx" beforeDir="false" afterPath="$PROJECT_DIR$/artikel.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Artikel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Artikel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Datenverwaltung.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Datenverwaltung.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Index.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="57bf97ae-025e-44d6-ac78-71c0879a4793" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,14 +18,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1SqXY0HvtR2h8T5YD0ablbKtpIt" />
+  <component name="ProjectId" id="1TOZq559BF7o65k6xUKVcblwoP2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/postgresql-42.2.8.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -50,7 +42,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Versuch1" />
+      <module name="Versuch2" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -66,11 +58,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1a5b6f75-914d-4fdc-b403-1f61d1f0a5ce" name="Default Changelist" comment="" />
-      <created>1572292142485</created>
+      <changelist id="57bf97ae-025e-44d6-ac78-71c0879a4793" name="Default Changelist" comment="" />
+      <created>1573333289149</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1572292142485</updated>
+      <updated>1573333289149</updated>
     </task>
     <servers />
   </component>

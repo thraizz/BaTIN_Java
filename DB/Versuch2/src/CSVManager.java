@@ -7,8 +7,9 @@ public class CSVManager {
     private String path;
     private ArrayList<Kunde> k;
 
-    public CSVManager(String path) throws IOException {
-        BufferedReader f = new BufferedReader(new FileReader(this.path));
+    public CSVManager(BufferedReader fr) throws IOException {
+        assert this.path != null;
+        BufferedReader f = fr;
         String line;
         this.k = new ArrayList<>();
         int i = 0;

@@ -21,8 +21,12 @@ public class Kunde {
                 this.plz+" "+this.ort+"\n"+
                 this.strasse+"\n";
     }
-    public String getInsert() {
+    public String getValues() {
         return "'"+this.kname +"','"+this.plz+"','"+this.ort+"','"+this.strasse+"'";
+    }
+
+    public String getColNames() {
+        return "KNAME,PLZ,ORT,STRASSE";
     }
 }
 
