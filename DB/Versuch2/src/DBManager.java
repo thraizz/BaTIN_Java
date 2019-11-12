@@ -3,45 +3,69 @@ import java.sql.*;
 public class DBManager {
     private Connection connection;
 
-    public DBManager(Connection connection){
+    public DBManager(Connection connection) {
         this.connection = connection;
     }
 
-    public void insert(String tablename, String colNames, String values) {
-        Statement stmt;
-        String SQL;
-        try {
-            stmt = this.connection.createStatement();
-            SQL = "INSERT INTO "+tablename+" ("+colNames+") VALUES ("+values+");";
-            stmt.executeUpdate(SQL);
-            stmt.close();
+    private String getData(ResultSet r, ResultSetMetaData rd) throws SQLException{
+        StringBuilder row = new StringBuilder();
+        int columnCount = rd.getColumnCount();
+        if(columnCount==1){
+            r.next();
+            return r.getString(1);
         }
-        catch (SQLException e){
-            System.out.println("[!] Fehler bei INSERT-Statement "+e.getMessage());
-        }
-    }
-
-    public String selectAll(String tablename){
-        String row = "";
-        try {
-            Statement stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM " + tablename);
-            ResultSetMetaData resultSetMetaData = rs.getMetaData();
-            final int columnCount = resultSetMetaData.getColumnCount();
-            while(rs.next()){
-                for (int i = 1; i <= columnCount; i++) {
-                    row += rs.getString(i)+"\t";
-                }
-                row += "\n";
+        while (r.next()) {
+            for (int i = 1; i <= columnCount; i++) {
+                row.append(String.format("| %-35s", r.getString(i)));
             }
+            row.append("\n");
         }
-        catch (SQLException e){
-            System.out.println("[!] Fehler bei SELECT-Statement: "+e.getMessage());
-        }
-        return row;
+        return row.toString();
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    private String getHeader(ResultSet r, ResultSetMetaData rd) throws SQLException {
+        StringBuilder row = new StringBuilder();
+        int columnCount = rd.getColumnCount();
+        for (int i = 1; i <= columnCount; i++) {
+                row.append(String.format("| %-35s", rd.getColumnLabel(i)));
+        }
+
+        row.append("\n------------------------------------------------------------------------------------------" +
+                "-----------------------------------------------------------------------\n");
+        return row.toString();
+    }
+
+    public void insert(String tablename, String colNames, String values) throws SQLException {
+        Statement stmt;
+        stmt = this.connection.createStatement();
+        stmt.executeUpdate("INSERT INTO " + tablename + " (" + colNames + ") VALUES (" + values + ");");
+    }
+
+    public String get(String query) throws SQLException {
+        StringBuilder row = new StringBuilder();
+        Statement stmt = this.connection.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        ResultSetMetaData rd = rs.getMetaData();
+        if(rd.getColumnCount()>1){
+            row.append(getHeader(rs, rd));
+        }
+        row.append(getData(rs, rd));
+        return row.toString();
+    }
+    public void set(String query) throws SQLException {
+        StringBuilder row = new StringBuilder();
+        Statement stmt = this.connection.createStatement();
+        int status = stmt.executeUpdate(query);
+        if(status == -1){
+            System.out.println("UPDATE fehlgeschlagen: "+status);
+        }
+        else{
+            System.out.println("UPDATE erfolgreich; "+status+" Reihen aktualisiert.");
+        }
+    }
+
+
+    public String selectAll(String tablename) throws SQLException {
+        return get("SELECT * FROM " + tablename);
     }
 }

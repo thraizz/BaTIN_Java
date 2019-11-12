@@ -8,15 +8,16 @@ public class Artikel {
     private float steu;
     private String s;
 
-    public Artikel(){
+    public Artikel() {
     }
+
     public Artikel(int artnr, String artbez, String mge, float preis, float steu) {
         this.artnr = artnr;
         this.artbez = artbez;
         this.mge = mge;
         this.preis = preis;
         this.steu = steu;
-        this.s = "'"+artbez+"','"+mge +"','"+preis+"','"+steu+"'";
+        this.s = "'" + artbez + "','" + mge + "','" + preis + "','" + steu + "'";
     }
 
     public int getArtnr() {
@@ -24,6 +25,6 @@ public class Artikel {
     }
 
     public String getInsert() {
-        return "'"+artbez+"','"+mge +"','"+preis+"','"+steu+"'";
+        return "'" + artbez + "','" + mge + "','" + preis + "','" + steu + "'";
     }
 }

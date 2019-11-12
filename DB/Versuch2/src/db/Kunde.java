@@ -7,7 +7,7 @@ public class Kunde {
     private String ort;
     private String strasse;
 
-    public Kunde(int knr, String kname, int plz, String ort, String strasse){
+    public Kunde(int knr, String kname, int plz, String ort, String strasse) {
         this.knr = knr;
         this.kname = kname;
         this.plz = plz;
@@ -15,14 +15,15 @@ public class Kunde {
         this.strasse = strasse;
     }
 
-    public String getFormattedAttributes(){
-        return "KNR "+this.knr+"\n"+
-                this.kname+"\n"+
-                this.plz+" "+this.ort+"\n"+
-                this.strasse+"\n";
+    public String getFormattedAttributes() {
+        return "KNR " + this.knr + "\n" +
+                this.kname + "\n" +
+                this.plz + " " + this.ort + "\n" +
+                this.strasse + "\n";
     }
+
     public String getValues() {
-        return "'"+this.kname +"','"+this.plz+"','"+this.ort+"','"+this.strasse+"'";
+        return "'" + this.kname + "','" + this.plz + "','" + this.ort + "','" + this.strasse + "'";
     }
 
     public String getColNames() {
