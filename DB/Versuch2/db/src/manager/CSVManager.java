@@ -1,4 +1,6 @@
-import db.Kunde;
+package manager;
+
+import dbObjekte.Kunde;
 
 import java.io.*;
 import java.util.ArrayList;

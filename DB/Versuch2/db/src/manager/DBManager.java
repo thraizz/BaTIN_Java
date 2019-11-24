@@ -1,3 +1,5 @@
+package manager;
+
 import java.sql.*;
 
 public class DBManager {
@@ -27,7 +29,7 @@ public class DBManager {
         StringBuilder row = new StringBuilder();
         int columnCount = resultSetMetaData.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
-                row.append(String.format("| %-35s", resultSetMetaData.getColumnLabel(i)));
+            row.append(String.format("| %-35s", resultSetMetaData.getColumnLabel(i)));
         }
 
         row.append("\n------------------------------------------------------------------------------------------" +

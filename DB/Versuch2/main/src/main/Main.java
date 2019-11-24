@@ -1,4 +1,9 @@
-import db.Kunde;
+package main;
+
+import connectionManager.ConnectionManager;
+import dbObjekte.Kunde;
+import manager.CSVManager;
+import manager.DBManager;
 
 import java.io.*;
 import java.sql.*;
@@ -95,9 +100,9 @@ public class Main {
                     int knr = Integer.parseInt(in.readLine());
                     System.out.println("Bitte Bestelldatum eingeben:");
                     String bestdat = in.readLine();
-                    dbManager.insert("bestellung","knr, bestdat", knr+","+bestdat);
+                    dbManager.insert("bestellung","knr, bestdat", knr+",'"+bestdat+"'");
                 case 8:
-                    // Bestellung artikel zuordnen
+                    // Artikel einer Bestellung zuordnen
                     System.out.println("Bitte Bestellnummer eingeben:");
                     int bestnr = Integer.parseInt(in.readLine());
                     System.out.println("Bitte Artikelnummer eingeben:");

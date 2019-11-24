@@ -1,4 +1,4 @@
-package db;
+package dbObjekte;
 
 public class Artikel {
     private int artnr;

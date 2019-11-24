@@ -1,3 +1,5 @@
+package connectionManager;
+
 import java.sql.*;
 
 public class ConnectionManager {

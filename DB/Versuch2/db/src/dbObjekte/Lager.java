@@ -1,4 +1,4 @@
-package db;
+package dbObjekte;
 
 public class Lager {
     private int lnr;

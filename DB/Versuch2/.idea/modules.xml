@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Versuch2.iml" filepath="$PROJECT_DIR$/Versuch2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/connect/connect.iml" filepath="$PROJECT_DIR$/connect/connect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/db/db.iml" filepath="$PROJECT_DIR$/db/db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" />
     </modules>
   </component>
 </project>
