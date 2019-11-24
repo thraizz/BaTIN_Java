@@ -5,6 +5,13 @@ import java.sql.*;
 
 public class Main {
     public static void main(String args[])throws IOException,SQLException{
+        try{
+            Class.forName("org.postgresql.Driver").newInstance();
+        }
+        catch (Exception e){
+            System.out.println("NICHT GEFUNDEN");
+        }
+
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         //System.out.println("Benutzername:");
         //String user = in.readLine();
@@ -35,7 +42,9 @@ public class Main {
             System.out.println("(4) Alle Kunden anzeigen");
             System.out.println("(5) WERT Spalte der Lagerbestände aktualisieren");
             System.out.println("(6) Stammdaten anzeigen");
-            System.out.println("(7) Beenden");
+            System.out.println("(7) Bestellung hinzufügen");
+            System.out.println("(8) Artikel einer Bestellung hinzufügen");
+            System.out.println("(9) Beenden");
             System.out.println("(11) Aufgabe 4: Kunden aus .CSV einfügen.");
             choice = Integer.parseInt(in.readLine());
             System.out.println();
@@ -81,6 +90,22 @@ public class Main {
                     System.out.println(dbManager.get("select artikel.*, sum(stuecke) from artikel, lagerbestand as l where artikel.artnr = "+artnr+" and l.artnr = "+artnr+" group by artikel.artbez;"));
                     break;
                 case 7:
+                    // Bestellung hinzufügen
+                    System.out.println("Bitte Kundennummer eingeben:");
+                    int knr = Integer.parseInt(in.readLine());
+                    System.out.println("Bitte Bestelldatum eingeben:");
+                    String bestdat = in.readLine();
+                    dbManager.insert("bestellung","knr, bestdat", knr+","+bestdat);
+                case 8:
+                    // Bestellung artikel zuordnen
+                    System.out.println("Bitte Bestellnummer eingeben:");
+                    int bestnr = Integer.parseInt(in.readLine());
+                    System.out.println("Bitte Artikelnummer eingeben:");
+                    artnr = Integer.parseInt(in.readLine());
+                    System.out.println("Bitte Menge eingeben:");
+                    int menge = Integer.parseInt(in.readLine());
+                    dbManager.reserveArticle(bestnr, artnr, menge);
+                case 9:
                     // Beenden
                     System.exit(0);
                 case 11:
