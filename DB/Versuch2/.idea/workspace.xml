@@ -33,13 +33,16 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/postgresql-42.2.8.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\schue\BaTIN_Java\DB\Versuch2\connect" />
+      <recent name="C:\Users\schue\BaTIN_Java\DB\Versuch2" />
+      <recent name="C:\Users\schue\BaTIN_Java\DB\Versuch2\main" />
       <recent name="C:\Users\schue\BaTIN_Java\DB\Versuch2\db" />
     </key>
   </component>

@@ -101,6 +101,7 @@ public class Main {
                     System.out.println("Bitte Bestelldatum eingeben:");
                     String bestdat = in.readLine();
                     dbManager.insert("bestellung","knr, bestdat", knr+",'"+bestdat+"'");
+                    break;
                 case 8:
                     // Artikel einer Bestellung zuordnen
                     System.out.println("Bitte Bestellnummer eingeben:");
@@ -110,6 +111,7 @@ public class Main {
                     System.out.println("Bitte Menge eingeben:");
                     int menge = Integer.parseInt(in.readLine());
                     dbManager.reserveArticle(bestnr, artnr, menge);
+                    break;
                 case 9:
                     // Beenden
                     System.exit(0);

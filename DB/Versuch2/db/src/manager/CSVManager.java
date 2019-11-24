@@ -6,28 +6,28 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class CSVManager {
-    private String path;
-    private ArrayList<Kunde> k;
+    //private String path;
+    private ArrayList<Kunde> kunde;
 
     public CSVManager(BufferedReader fr) throws IOException {
-        assert this.path != null;
+        //assert this.path != null;
         BufferedReader f = fr;
         String line;
-        this.k = new ArrayList<>();
+        this.kunde = new ArrayList<>();
         int i = 0;
         while ((line = f.readLine()) != null) {
             String[] o = line.split(",");
-            k.add(new Kunde(i, o[0], Integer.parseInt(o[1]), o[2], o[3]));
+            kunde.add(new Kunde(i, o[0], Integer.parseInt(o[1]), o[2], o[3]));
         }
     }
 
     public ArrayList<Kunde> getKunden() {
-        return this.k;
+        return this.kunde;
     }
 
-    public void printKunden() {
-        for (Kunde kunde : this.k) {
-            System.out.println(kunde.getFormattedAttributes());
-        }
-    }
+//    public void printKunden() {
+//        for (Kunde kunde : this.kunde) {
+//            System.out.println(kunde.getFormattedAttributes());
+//        }
+//    }
 }

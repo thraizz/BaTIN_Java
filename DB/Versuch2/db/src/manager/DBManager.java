@@ -78,13 +78,13 @@ public class DBManager {
         ResultSetMetaData rd = rs.getMetaData();
         while (rs.next()) {
             int bestand = rs.getInt(1);
-            if(menge < bestand){
+            if(menge <= bestand){
                 int diff = bestand-menge;
                 String newRow = (""+rs.getInt(2)+","+rs.getInt(3)+","+diff+","+rs.getFloat(5));
                 this.insert("lagerbestand", "artnr,lnr,stuecke,wert", newRow);
                 System.out.println("Artikel erfolgreich bestellt.");
                 // Lagerbestand mit der bestandnummer n aktualisieren so dass dort die bestellung reserviert liegt
-                this.set("update lagerbestand set stuecke="+menge+", bestnr="+bestnr+", where bstnr="+rs.getInt(1));
+                this.set("update lagerbestand set stuecke="+menge+", bestnr="+bestnr+" where bstnr="+rs.getInt(8));
                 return;
             }
         }
