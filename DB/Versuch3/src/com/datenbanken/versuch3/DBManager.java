@@ -1,11 +1,19 @@
 package com.datenbanken.versuch3;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.LinkedList;
 
 public class DBManager {
     private Connection connection;
+    private ArrayList<Box> boxArrayList;
+    private ArrayList<Dictionary> packliste;
 
     public DBManager(Connection connection) {
         this.connection = connection;
+        this.boxArrayList = new ArrayList<Box>();
+        this.packliste = new ArrayList<Dictionary>();
     }
 
     private String getData(ResultSet r, ResultSetMetaData rd) throws SQLException{
@@ -93,7 +101,63 @@ public class DBManager {
     public Bpd createBpd(int bestellnr) throws SQLException {
         int artnr = Integer.parseInt(get("select artnr from lagerbestand l where l.bestnr = "+bestellnr+";"));
         String artbez = get("SELECT artbez from artikel where artnr ="+artnr+";");
-        int bstnr = Integer.parseInt(get("select bsntr from lagerbestand l where l.bestnr ="+bestellnr+";"));
-        return new Bpd(bstnr, "WP", artnr, artbez, 2, 1, false);
+        int bstnr = Integer.parseInt(get("select bstnr from lagerbestand l where l.bestnr ="+bestellnr+";"));
+        int anzbo = Integer.parseInt(get("select anzbo from artikel a where a.artnr ="+artnr));
+        int menge = Integer.parseInt(get("select stuecke from lagerbestand where lagerbestand.bestnr = +"+bestellnr));
+        String ttyp = get("select ttyp from artikel where artikel.artnr = "+artnr+";");
+        return new Bpd(bstnr, ttyp, artnr, artbez, anzbo, menge, false);
+    }
+
+    public void getBoxen() throws SQLException {
+        if(boxArrayList.isEmpty()) {
+            String query = "select vbnr, vbtyp from box where vstat=0;";
+            Statement stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                boxArrayList.add(new Box(rs.getInt(1), rs.getString(2)));
+            }
+        }
+    }
+
+    public void maschinelleDisposition(LinkedList<Bpd> bpdispo) throws SQLException {
+        this.getBoxen();
+        for (Box box: boxArrayList) {
+            System.out.println("Checke box "+box.vbnr);
+            for (Bpd b : bpdispo) {
+                System.out.println("Checke bpd "+b.getArtbez()+" mit algrad "+b.getAlgrad());
+                if (b.getTtyp()<=box.vbtyp ) {
+                    if(b.getAlgrad() < 100 && b.getAlgrad() < box.R){
+                        System.out.println("Bpd "+b.getArtbez()+" wurde verpackt.");
+                        box.R = box.R - b.getAlgrad();
+                        b.setVerpackt(true);
+                        Dictionary d = new Hashtable();
+                        d.put("bstnr", b.getBstnr());
+                        d.put("vbnr", box.vbnr);
+                        d.put("vmenge", b.getMenge());
+                        packliste.add(d);
+                        bpdispo.remove(b);
+                    }
+                    else{
+                        int anzBOX = b.getAlgrad()/100+1;
+                        System.out.println("Bpd "+b.getArtbez()+" war zu groß und wird weiterverpackt.");
+                        b.setAlgrad(b.getAlgrad()-100);
+
+                    }
+                }
+            }
+        }
+        if(!bpdispo.isEmpty()){
+            System.out.println("ERROR! Es gab nicht genug Boxen zum verpacken aller Bestellungsdispositionen.");
+        }
+    }
+
+    public String printBoxen() throws SQLException {
+        return this.get("select * from box as b where b.vstat=0 \n" +
+                "order by (CASE vbtyp\n" +
+                "   WHEN 'FW' \t THEN 5\n" +
+                "   WHEN 'WP' \t THEN 4\n" +
+                "   WHEN 'FR' \t THEN 3\n" +
+                "   WHEN 'OR' THEN 2\n" +
+                "   ELSE 1 END) desc;");
     }
 }

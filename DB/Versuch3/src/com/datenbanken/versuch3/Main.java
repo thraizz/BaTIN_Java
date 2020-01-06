@@ -31,7 +31,6 @@ public class Main {
 
         int choice = 0;
         do {
-            try{
                 System.out.println();
                 System.out.println("Bitte waehlen:");
                 System.out.println("(1) Alle Artikel anzeigen");
@@ -44,6 +43,7 @@ public class Main {
                 System.out.println("(8) Artikel einer Bestellung hinzufügen");
                 System.out.println("(9) Bestellung auswählen.");
                 System.out.println("(10) Versandplanung");
+                System.out.println("(11) Maschinell Boxen dispositionieren");
 
                 System.out.println("(0) Beenden");
                 choice = Integer.parseInt(in.readLine());
@@ -108,39 +108,25 @@ public class Main {
                         dbManager.reserveArticle(bestnr, artnr, menge);
                         break;
                     case 9:
-                        // Stammdaten für Artikelnummer anzeigen
+                        // Bpd für Bestellung anlegen
                         System.out.println(dbManager.get("select * from bestellung as b where b.status=1;"));
                         System.out.println("Bitte Bestellnummer eingeben:");
                         int bestellnr = Integer.parseInt(in.readLine());
                         bpdispo.add(dbManager.createBpd(bestellnr));
-                        Collections.sort(bpdispo, new Comparator<Bpd>() {
-                            @Override
-                            public int compare(Bpd o1, Bpd o2) {
-                                return o1.getAlgrad() - o2.getAlgrad();
-                            }
-                        });
+                        Collections.sort(bpdispo, (o1, o2) -> o1.getAlgrad() - o2.getAlgrad());
                         break;
                     case 10:
                         System.out.println("Freie Boxen:");
-                        System.out.println(dbManager.get("select * from box as b where b.vstat=0 \n" +
-                                "order by (CASE vbtyp\n" +
-                                "   WHEN 'FW' \t THEN 5\n" +
-                                "   WHEN 'WP' \t THEN 4\n" +
-                                "   WHEN 'FR' \t THEN 3\n" +
-                                "   WHEN 'OR' THEN 2\n" +
-                                "   ELSE 1 END) desc;"));
+                        System.out.println(dbManager.printBoxen());
                         break;
                     case 11:
-                        // AUFGABE 4
+                        dbManager.maschinelleDisposition(bpdispo);
                         break;
                     default:
                         System.exit(0);
 
                 }
-            }
-            catch(Exception e){
-                System.out.println("Keine gültige Eingabe");
-            }
+
         } while (choice != 0);
     }
 }
