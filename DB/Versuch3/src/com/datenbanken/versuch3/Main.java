@@ -43,11 +43,7 @@ public class Main {
                 System.out.println("(7) Bestellung hinzufügen");
                 System.out.println("(8) Artikel einer Bestellung hinzufügen");
                 System.out.println("(9) Bestellung auswählen.");
-                System.out.println("(10) Aufgabe 4: Kunden aus .CSV einfügen.");
-                System.out.println("(11) Aufgabe 4: Kunden aus .CSV einfügen.");
-                System.out.println("(12) Aufgabe 4: Kunden aus .CSV einfügen.");
-                System.out.println("(13) Aufgabe 4: Kunden aus .CSV einfügen.");
-                System.out.println("(14) Aufgabe 4: Kunden aus .CSV einfügen.");
+                System.out.println("(10) Versandplanung");
 
                 System.out.println("(0) Beenden");
                 choice = Integer.parseInt(in.readLine());
