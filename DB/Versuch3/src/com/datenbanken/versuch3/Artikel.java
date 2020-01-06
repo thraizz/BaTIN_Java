@@ -1,3 +1,4 @@
+package com.datenbanken.versuch3;
 public class Artikel {
     private int artnr;
     private String artbez;

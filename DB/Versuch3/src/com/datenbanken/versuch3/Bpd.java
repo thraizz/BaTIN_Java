@@ -1,3 +1,5 @@
+package com.datenbanken.versuch3;
+
 class Bpd{
     private int bstnr;
     private String ttyp;

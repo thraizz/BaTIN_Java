@@ -1,3 +1,4 @@
+package com.datenbanken.versuch3;
 import java.sql.*;
 
 public class DBManager {

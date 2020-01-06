@@ -1,3 +1,4 @@
+package com.datenbanken.versuch3;
 public class Kunde {
     private int knr;
     private String kname;

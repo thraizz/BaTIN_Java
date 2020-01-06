@@ -1,3 +1,5 @@
+package com.datenbanken.versuch3;
+
 import java.io.*;
 import java.sql.*;
 import java.util.Collections;
@@ -134,25 +136,15 @@ public class Main {
                         break;
                     case 11:
                         // AUFGABE 4
-                        BufferedReader f = new BufferedReader(new FileReader("KUNDE.CSV"));
-                        CSVManager c = new CSVManager(f);
-                        for (Kunde kunde: c.getKunden()) {
-                            try {
-                                dbManager.insert(kundentable, kunde.getColNames(), kunde.getValues());
-                            } catch(Exception e) {
-                                System.out.println("Einfügen nicht erfolgreich: "+e);
-                            }
-                        }
-                        System.out.println(c.getKunden().size()+" Kunden hinzugefügt");
                         break;
                     default:
                         System.exit(0);
 
                 }
-              }
-              catch(Exception e){
+            }
+            catch(Exception e){
                 System.out.println("Keine gültige Eingabe");
-              }
-            } while (choice != 0);
+            }
+        } while (choice != 0);
     }
 }
